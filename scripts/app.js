@@ -44,39 +44,43 @@ RocknCoder.Dimensions = (function () {
 	};
 }());
 
-RocknCoder.Pages.homePage = (function () {
-	var pageshow = function () {
-			RocknCoder.Dimensions.init();
-			// determine the height dynamically
-			var dim = RocknCoder.Dimensions.getContent();
-			$("#horizontalWrapper").css('height', dim.height);
-			$("#verticalWrapper").css('height', dim.height);
+RocknCoder.Pages.scalePage = (function () {
+	var init = false,
+		$scalePic = $("#scalePic"),
+		$panPic = $("#panPic"),
+		$hiddenPic = $("#hiddenPic"),
+
+		pageshow = function () {
+			var width, height, dim;
+			if (!init) {
+				init = true;
+				RocknCoder.Dimensions.init();
+				// determine the dimensions dynamically
+				dim = RocknCoder.Dimensions.getContent();
+				$("#wrapper").css('height', dim.height);
+				$scalePic.attr('src', $hiddenPic.attr('src'));
+				$panPic.attr('src', $hiddenPic.attr('src'));
+
+				width = $scalePic.width();
+				height = $scalePic.height();
+				$("#scroller").css("width", width).css("height", height);
+
+				if (width > height) {
+					$scalePic.width(dim.width);
+				} else {
+					$scalePic.height(dim.height);
+				}
+			}
 		};
 	return {
 		pageshow: pageshow
 	};
 }());
 
-RocknCoder.Pages.verticalPage = (function () {
+RocknCoder.Pages.panPage = (function () {
 	var myScroll,
 		pageshow = function () {
-			myScroll = new iScroll('verticalWrapper');
-
-		},
-		pagehide = function () {
-			myScroll.destroy();
-			myScroll = null;
-		};
-	return {
-		pageshow: pageshow,
-		pagehide: pagehide
-	};
-}());
-
-RocknCoder.Pages.horizontalPage = (function () {
-	var myScroll,
-		pageshow = function () {
-			myScroll = new iScroll('horizontalWrapper');
+			myScroll = new iScroll('wrapper');
 		},
 		pagehide = function () {
 			myScroll.destroy();

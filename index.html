@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>JQM Scrolling</title>
+	<title>JQMImageScalePan</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<link href="content/jquery.mobile-1.1.0.min.css" rel="stylesheet" type="text/css" />
@@ -11,103 +11,38 @@
 	<script src="scripts/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
 </head>
 <body>
-	<div id="homePage" data-role="page" data-rockncoder-jspage="homePage">
+	<div id="scalePage" data-role="page" data-rockncoder-jspage="scalePage">
 		<header data-role="header" data-position="fixed">
-			<h1>JQM Scrolling</h1>
+			<h1>Scaled</h1>
 		</header>
-		<section data-role="content">
-			<ul data-role="listview" data-inset="true">
-				<li><a href="#verticalPage">Vertical Scrolling</a></li>
-				<li><a href="#horizontalPage">Horizontal Scrolling</a></li>
-			</ul>
-		</section>
-		<footer data-role="footer" data-position="fixed">
-			<h1>footer</h1>
-		</footer>
-	</div>
-	<div id="verticalPage" data-role="page" data-rockncoder-jspage="verticalPage">
-		<header data-role="header" data-position="fixed">
-			<h1>Vertical</h1>
-		</header>
-		<section data-role="content"  class="scroller">
-			<div id="verticalWrapper" >
-				<div id="verticalScroller">
-					<ul>
-						<li>A</li>
-						<li>B</li>
-						<li>C</li>
-						<li>D</li>
-						<li>E</li>
-						<li>F</li>
-						<li>G</li>
-						<li>H</li>
-						<li>I</li>
-						<li>J</li>
-						<li>K</li>
-						<li>L</li>
-						<li>M</li>
-						<li>N</li>
-						<li>O</li>
-						<li>P</li>
-						<li>Q</li>
-						<li>R</li>
-						<li>S</li>
-						<li>T</li>
-						<li>U</li>
-						<li>V</li>
-						<li>W</li>
-						<li>X</li>
-						<li>Y</li>
-						<li>Z</li>
-					</ul>
-				</div>
+		<section data-role="content" id="scaleContent" >
+			<div id="picFrame">
+				<img id="scalePic"/>
 			</div>
 		</section>
 		<footer data-role="footer" data-position="fixed">
-			<h2>(swipe vertically)</h2>
+			<h1><a data-role="button" data-theme="e" href="#panPage">Pan</a></h1>
 		</footer>
 	</div>
-	<div id="horizontalPage" data-role="page" data-rockncoder-jspage="horizontalPage">
+	<div id="panPage" data-role="page" data-rockncoder-jspage="panPage">
 		<header data-role="header" data-position="fixed">
-			<h1>Horizontal</h1>
+			<h1>Panning</h1>
 		</header>
 		<section data-role="content" class="scroller">
-			<div id="horizontalWrapper">
-				<div id="horizontalScroller">
+			<div id="wrapper">
+				<div id="scroller">
 					<ul>
-						<li>A</li>
-						<li>B</li>
-						<li>C</li>
-						<li>D</li>
-						<li>E</li>
-						<li>F</li>
-						<li>G</li>
-						<li>H</li>
-						<li>I</li>
-						<li>J</li>
-						<li>K</li>
-						<li>L</li>
-						<li>M</li>
-						<li>N</li>
-						<li>O</li>
-						<li>P</li>
-						<li>Q</li>
-						<li>R</li>
-						<li>S</li>
-						<li>T</li>
-						<li>U</li>
-						<li>V</li>
-						<li>W</li>
-						<li>X</li>
-						<li>Y</li>
-						<li>Z</li>
+						<li><img id="panPic"/></li>
 					</ul>
 				</div>
 			</div>
 		</section>
 		<footer data-role="footer" data-position="fixed">
-			<h1>(swipe horizontally)</h1>
+			<h1><a data-role="button" data-theme="e" data-rel="back" href="#scalePage">Scale</a></h1>
 		</footer>
+		<div style="display: block; position: fixed; left: -10000px; top: 0px;">
+			<img id="hiddenPic" src="squirrel_eating_1280x1024.jpeg" />
+		</div>
 	</div>
 	<script src="scripts/iscroll-lite.js" type="text/javascript"></script>
 	<script src="scripts/app.js" type="text/javascript"></script>
