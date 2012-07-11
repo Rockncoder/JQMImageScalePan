@@ -1,7 +1,7 @@
 ﻿
 // Next two lines for JS-Lint, first a pragma instruction, then global vars specified
 "use strict";
-var $, iScroll, document, alert, navigator;
+var $, iScroll, document, window, alert;
 
 // create our own namespace
 var RocknCoder = RocknCoder || {};
@@ -24,7 +24,7 @@ RocknCoder.Pages.Events = (function () {
 }());
 
 RocknCoder.Dimensions = (function () {
-	var width, height, headerHeight, footerHeight, contentHeight,
+	var dWidth, dHeight, width, height, headerHeight, footerHeight, contentHeight,
 		getContentDimensions = function () {
 			return {
 				width: width,
@@ -32,8 +32,14 @@ RocknCoder.Dimensions = (function () {
 			};
 		},
 		init = function () {
-			width = $(document).width();
-			height = $(document).height();
+			width = $(window).width();
+			height = $(window).height();
+			dWidth = $(document).width();
+			dHeight = $(document).height();
+			if (dHeight > height) {
+				width = dWidth;
+				height = dHeight;
+			}
 			headerHeight = $("header", $.mobile.activePage).height();
 			footerHeight = $("footer", $.mobile.activePage).height();
 			contentHeight = height - headerHeight - footerHeight;
@@ -61,18 +67,20 @@ RocknCoder.Pages.scalePage = (function () {
 				$scalePic.attr('src', $hiddenPic.attr('src'));
 				$panPic.attr('src', $hiddenPic.attr('src'));
 
-				width = $hiddenPic.width();
-				height = $hiddenPic.height();
-				$("#scroller").css({
-					width: width,
-					height: height
-				});
+				$hiddenPic.load(function () {
+					width = $hiddenPic.width();
+					height = $hiddenPic.height();
+					$("#scroller").css({
+						width: width,
+						height: height
+					});
 
-				if (width > height) {
-					$scalePic.width(dim.width);
-				} else {
-					$scalePic.height(dim.height);
-				}
+					if (width > height) {
+						$scalePic.width(dim.width);
+					} else {
+						$scalePic.height(dim.height);
+					}
+				});
 			}
 		};
 	return {
