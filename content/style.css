@@ -8,8 +8,8 @@
 #scroller {
 	margin: 0;
 	padding: 0;
-	width: 1024px;  /* max number scroll elements + 1 times their width */
-	height: 768px;   /* it will be the same as the wrapper's height even after it is changed */
+	width: 1024px;  /* width and height set dynamically */
+	height: 768px;
 }
 
 .scroller ul {
@@ -27,7 +27,7 @@
 	float: left;
 	padding: 0;
 	margin: 0;
-	width: 100%;       /* this is the width of an individual element */
+	width: 100%;
 	height: 100%;
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #fff;

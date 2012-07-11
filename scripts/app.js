@@ -1,7 +1,7 @@
 ﻿
 // Next two lines for JS-Lint, first a pragma instruction, then global vars specified
 "use strict";
-var $, iScroll, window, alert;
+var $, iScroll, document, alert, navigator;
 
 // create our own namespace
 var RocknCoder = RocknCoder || {};
@@ -32,8 +32,8 @@ RocknCoder.Dimensions = (function () {
 			};
 		},
 		init = function () {
-			width = $(window).width();
-			height = $(window).height();
+			width = $(document).width();
+			height = $(document).height();
 			headerHeight = $("header", $.mobile.activePage).height();
 			footerHeight = $("footer", $.mobile.activePage).height();
 			contentHeight = height - headerHeight - footerHeight;
@@ -61,9 +61,12 @@ RocknCoder.Pages.scalePage = (function () {
 				$scalePic.attr('src', $hiddenPic.attr('src'));
 				$panPic.attr('src', $hiddenPic.attr('src'));
 
-				width = $scalePic.width();
-				height = $scalePic.height();
-				$("#scroller").css("width", width).css("height", height);
+				width = $hiddenPic.width();
+				height = $hiddenPic.height();
+				$("#scroller").css({
+					width: width,
+					height: height
+				});
 
 				if (width > height) {
 					$scalePic.width(dim.width);
